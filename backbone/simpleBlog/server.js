@@ -20,7 +20,7 @@ app.get("/posts", function (req, res) {
 */
 
 app.get("/posts", function (req, res) {
-     allPosts.find(function (abc, results) {
+     posts.find(function (abc, results) {
        res.json(results);
      });
 });
