@@ -9,6 +9,13 @@
     <script src="/underscore.js"></script>
     <script src="/backbone.js"></script>
     <script src="/app.js"></script>
+    <script type="text/template" id="postView">
+      <a href='/'>All Posts</a>
+      <h1>{{title}}</h1>
+      <p>{{pubDate}}</p>
+      {{content}}
+    </script>
+
     <script>
       var postRouter = new PostRouter({
         posts: new Posts(<%- posts %>),

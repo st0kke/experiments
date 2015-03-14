@@ -17,8 +17,8 @@ app.get("/posts", function (req, res) {
     res.json(results);
   });
 });
-*/
 
+*/
 app.get("/posts", function (req, res) {
      posts.find(function (abc, results) {
        res.json(results);
