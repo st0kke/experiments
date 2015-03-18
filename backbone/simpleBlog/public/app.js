@@ -40,28 +40,25 @@ var PostsListView = Backbone.View.extend({
       }
 });
 
-
 var PostView = Backbone.View.extend({
   template: _.template($("#postView").html()),
   
   events: {
     'click a' : 'handleClick'
   },
-
   render: function() {
     var model = this.model.toJSON();
     model.pubDate = new Date(Date.parse(model.pubDate)).toDateString();
     this.el.innerHTML = this.template(model);
      return this;
   },
-
   handleClick: function(e) {
     e.preventDefault();
     postRouter.navigate($(e.currentTarget).attr("href"), {trigger: true});
-    return false; 
+    //return false; 
   }
+  
 });
-
 
 var PostRouter = Backbone.Router.extend({
   initialize: function(options) {
@@ -78,11 +75,14 @@ var PostRouter = Backbone.Router.extend({
   },
   singlePost: function(id) {
     console.log("view post " + id);
-   /*
-    var post = this.posts.get(id);
-    var pv = new PostView({model: post});
-    this.main.html(pv.render().el);   
-  */
+    console.log($("#postView").html());
+    //var post = this.posts.get(id);
+    //var pv = new PostView({model: post});
+    //this.main.html(pv.render().el);   
   }
 });
+
+
+
+
 
