@@ -12,6 +12,28 @@
         <p>{{pubDate}}</p>
         {{content}}
     </script>
+    <script type="text/template" id="homeView">
+
+    </script>
+
+    <script type="text/template" id="commentView">
+      {{name}} said on {{commentDate}} {{comment}}
+    </script>
+
+    <script type="text/template" id="newCommentView">
+      <input type="text" id="cmtName" placeholder="name"/><br/>
+      <textarea id="cmtText"></textarea><br/>
+      <button id="submitComment">Submit</button>
+    </script>
+
+    <script type="text/template" id="postFormView">
+      <a href="/">All Posts</a><br/>
+      <input type="text" id="postTitle" placeholder="post title" />
+      <br/>
+      <textarea id="postText"></textarea>
+      <br/>
+      <button id="submitPost">Post</button>
+    </script>
 
     <script src="/jquery.js"></script>
     <script src="/underscore.js"></script>

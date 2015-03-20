@@ -2,10 +2,22 @@
      interpolate: /\{\{(.+?)\}\}/g
 };	
 
-var Post = Backbone.Model.extend();
+var Post = Backbone.Model.extend(
+  //initialize: function()  {
+  //  this.comments = new Comments([], {postUrl: this.url()});
+  //}
+);
 var Posts = Backbone.Collection.extend({
   model: Post,
   url: "/posts"
+});
+
+var Comment = Backbone.Model.extend();
+var Comments = Backbone.Collection.extend({
+  initialize: function(models, options) {
+    this.url = options.postUrl + "/comments";
+  }
+
 });
 
 var PostListView = Backbone.View.extend({
@@ -28,16 +40,25 @@ var PostListView = Backbone.View.extend({
 
 var PostsListView = Backbone.View.extend({
 	template: _.template("<h1>My Blog</h1><ul></ul>"),
+
+  initialize: function(options) {
+    this.collection.on('add', this.newPost, this);
+  },
+
+
+  newPost: function() {
+    console.log('new post added');
+  },
+  
 	render: function() {
 	  this.el.innerHTML = this.template();
-          var ul = this.$el.find("ul");
-          this.collection.forEach(function(post) {
-            ul.append(new PostListView({
-              model: post
-            }).render().el);    
-	});
-        return this;
-      }
+    var ul = this.$el.find("ul");
+    this.collection.forEach(function(post) {
+      console.log("adding");
+      ul.append(new PostListView({model: post}).render().el);    
+	   });
+    return this;
+  }
 });
 
 var PostView = Backbone.View.extend({
@@ -50,7 +71,7 @@ var PostView = Backbone.View.extend({
     var model = this.model.toJSON();
     model.pubDate = new Date(Date.parse(model.pubDate)).toDateString();
     this.el.innerHTML = this.template(model);
-     return this;
+    return this;
   },
   handleClick: function(e) {
     e.preventDefault();
@@ -60,6 +81,85 @@ var PostView = Backbone.View.extend({
   
 });
 
+var PostFormView = Backbone.View.extend({
+  tagName: 'form',
+  template: _.template($("#postFormView").html()),
+  initialize: function(options) {
+    this.posts = options.posts;
+  },
+  events: {
+    'click button' : 'createPost'
+  },
+  render: function() {
+    this.el.innerHTML = this.template();
+    return this;
+  },
+  createPost: function(e) {
+    var postAttrs = {
+      content: $("#postText").val(),
+      title: $("#postTitle").val(),
+      pubDate: new Date()
+    };
+    console.log(postAttrs);
+    this.posts.create(postAttrs);
+    postRouter.navigate("/", {trigger: true});
+    return false;
+  }
+
+});
+
+var CommentView = Backbone.View.extend({
+  template: _.template($('#commentView').html()),
+  render: function() {
+    var model = this.model.toJSON();
+    this.el.innerHTML = this.template(model);
+    return this;
+  }
+
+});
+
+var CommentFormView = Backbone.View.extend({
+  tagName: "form",
+  initialize: function(options) {
+    this.post = options.post;
+  },
+  template: _.template($("#newCommentView").html()),
+  events: {
+    'click button': 'submitComment'
+  },
+  render: function() {
+    this.el.innerHTML = this.template();
+    return this;
+  },
+  submitComment: function() {
+    var name = this.$("#cmtName").val();
+    var comment = this.$("#cmtText").val();
+    var commentAttrs = {
+      postId: this.post.get("id"),
+      name: name,
+      text: comment,
+      date: new Date()
+    };
+    this.post.comments.create(commentAttrs);
+    //this.el.reset();
+
+  }
+
+});
+
+var CommentsView = Backbone.View.extend({
+  initialize: function(options) {
+    this.post = options.post;
+  },
+  render: function() {
+    this.$el.append("<h2>Comments</h2>");
+    this.$el.append(new CommentFormView({post: this.post}).render().el);
+
+  }
+
+});
+
+
 var PostRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.posts = options.posts;
@@ -67,6 +167,7 @@ var PostRouter = Backbone.Router.extend({
   },
   routes: {
     '': 'index',
+    'posts/new': 'newPost',
     'posts/:id': 'singlePost'
   },
   index: function() {
@@ -74,12 +175,16 @@ var PostRouter = Backbone.Router.extend({
     this.main.html(pv.render().el);
   },
   singlePost: function(id) {
-    console.log("view post " + id);
-    console.log($("#postView").html());
-    //var post = this.posts.get(id);
-    //var pv = new PostView({model: post});
-    //this.main.html(pv.render().el);   
+    var post = this.posts.get(id);
+    var pv = new PostView({model: post});
+    this.main.html(pv.render().el);   
+  },
+  newPost: function() {
+    console.log('creating a new post');
+    var pfv = new PostFormView({posts: this.posts});
+    this.main.html(pfv.render().el);
   }
+
 });
 
 
