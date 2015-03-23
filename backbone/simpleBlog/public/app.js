@@ -2,23 +2,24 @@
      interpolate: /\{\{(.+?)\}\}/g
 };	
 
-var Post = Backbone.Model.extend(
-  //initialize: function()  {
-  //  this.comments = new Comments([], {postUrl: this.url()});
-  //}
-);
-var Posts = Backbone.Collection.extend({
-  model: Post,
-  url: "/posts"
-});
-
 var Comment = Backbone.Model.extend();
 var Comments = Backbone.Collection.extend({
   initialize: function(models, options) {
     this.url = options.postUrl + "/comments";
   }
-
 });
+
+var Post = Backbone.Model.extend({
+  initialize: function()  {
+    this.comments = new Comments([], {postUrl: this.url() });
+  }
+});
+var Posts = Backbone.Collection.extend({
+  model: Post,
+  url: "/posts"
+});
+
+
 
 var PostListView = Backbone.View.extend({
 	tagName: "li",
@@ -131,17 +132,18 @@ var CommentFormView = Backbone.View.extend({
     this.el.innerHTML = this.template();
     return this;
   },
-  submitComment: function() {
+  submitComment: function(e) {
+    e.preventDefault();
     var name = this.$("#cmtName").val();
     var comment = this.$("#cmtText").val();
     var commentAttrs = {
       postId: this.post.get("id"),
       name: name,
       text: comment,
-      date: new Date()
+      commentDate: new Date()
     };
     this.post.comments.create(commentAttrs);
-    //this.el.reset();
+    this.el.reset();
 
   }
 
@@ -150,11 +152,17 @@ var CommentFormView = Backbone.View.extend({
 var CommentsView = Backbone.View.extend({
   initialize: function(options) {
     this.post = options.post;
+    this.post.comments.on('add', this.showNewComment, this);
   },
   render: function() {
+    console.log("attempting render");
     this.$el.append("<h2>Comments</h2>");
     this.$el.append(new CommentFormView({post: this.post}).render().el);
-
+    this.post.comments.fetch();
+    return this;
+  },
+  showNewComment: function(comment) {
+    this.$el.append(new CommentView({model: comment}).render().el);
   }
 
 });
@@ -178,6 +186,8 @@ var PostRouter = Backbone.Router.extend({
     var post = this.posts.get(id);
     var pv = new PostView({model: post});
     this.main.html(pv.render().el);   
+    var cv = new CommentsView({post: post});
+    this.main.append(cv.render().el);
   },
   newPost: function() {
     console.log('creating a new post');
