@@ -1,0 +1,19 @@
+{
+  "name": "photoapp",
+  "description": "a simple photoapp",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.2",
+    "bourne": "0.3",
+    "ejs": "~0.8.4",
+    "express": "3.x.x",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
