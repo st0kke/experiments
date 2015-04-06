@@ -39,4 +39,42 @@ app.get("/logout", function(req, res) {
   res.redirect('/');
 });
 
+app.post('/create', function(req, res, next) {
+  var userAttrs = {
+    username: req.body.username,
+    passwordHash: signin.hashPassword(req.body.password), 
+    following: []
+  };
+  users.findOne({username: userAttrs.username}, function (existingUser) {
+    if (!existingUser) {
+      users.insert(userAttrs, function(user) {
+        req.login(user, function(err) {
+          res.redirect("/");
+        });
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
+});
 
+app.get('/*', function(req, res) {
+  if(!req.user) {
+    res.redirect('/login');
+    return;
+  }
+  res.render("index.ejs", {
+    user: JSON.stringify(safe(req.user))
+  });
+});
+
+function safe(user) {
+  var toHide=['passwordHash'],
+    clone = JSON.parse(JSON.stringify(user));
+
+  toHide.forEach(function(prop {
+    delete clone[prop];
+  });
+
+  return clone;
+}
