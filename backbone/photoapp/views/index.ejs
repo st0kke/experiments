@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Photo App </title>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="text/template" id="navView">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users">All Users</a></li>
+        <li><a href="/users/{{id}}">My Profile</a></li>
+        <li><a href="/upload">Add Photo</a></li>
+        <li>Logged in as <strong>{{username}}</strong></li>
+        <li><a href="/logout">Log out</a></li>
+      </ul>
+      <hr/>
+    </script>
+    <script src="/jquery.js"></script>
+    <script src="/underscore.js"></script>
+    <script src="/backbone.js"></script>
+    <script>var USER = <%- user %>;</script>
+
+    <script src="/app.js"></script>
+    <script>
+      var r = new AppRouter({
+        main: $("#main")
+      });
+
+      Backbone.history.start({pushState: true});
+    </script>    
+</body>
+</html>
