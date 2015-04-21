@@ -1,18 +1,29 @@
 var express = require('express');
 var path = require('path');
-var bourne = require('bourne');
+var bourne = require("bourne");
 var passport = require("passport");
 var signin = require("./signin");
 
 var app = express();
 
-var users = new Bourne("users.json");
-var photos = new Bourne("photos.json");
-var comments = new Bourne("comments.json");
+var users = new bourne("users.json");
+var photos = new bourne("photos.json");
+var comments = new bourne("comments.json");
 
 passport.use(signin.strategy(users));
 passport.serializeUser(signin.serialize);
 passport.deserializeUser(signin.deserialize(users));
+
+function safe(user) {
+  var toHide=['passwordHash'],
+    clone = JSON.parse(JSON.stringify(user));
+
+  toHide.forEach(function(prop) {
+    delete clone[prop];
+  });
+
+  return clone;
+}
 
 app.configure(function() {
   app.use(express.urlencoded());
@@ -45,10 +56,13 @@ app.post('/create', function(req, res, next) {
     passwordHash: signin.hashPassword(req.body.password), 
     following: []
   };
-  users.findOne({username: userAttrs.username}, function (existingUser) {
+  console.log(userAttrs);
+  users.findOne({username: userAttrs.username}, function (err, existingUser) {
     if (!existingUser) {
+      console.log("new user");
       users.insert(userAttrs, function(user) {
         req.login(user, function(err) {
+          console.log("logging in: " + req.user + err);
           res.redirect("/");
         });
       });
@@ -59,6 +73,7 @@ app.post('/create', function(req, res, next) {
 });
 
 app.get('/*', function(req, res) {
+  console.log("req user is: " + req.user);
   if(!req.user) {
     res.redirect('/login');
     return;
@@ -68,13 +83,5 @@ app.get('/*', function(req, res) {
   });
 });
 
-function safe(user) {
-  var toHide=['passwordHash'],
-    clone = JSON.parse(JSON.stringify(user));
 
-  toHide.forEach(function(prop {
-    delete clone[prop];
-  });
-
-  return clone;
-}
+app.listen(3000);

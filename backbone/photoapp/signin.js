@@ -22,7 +22,8 @@ exports.serialize = function (user, done) {
 
 exports.deserialize = function(db) {
   return function(id, done) {
-    db.findOne({id: id}, function(user) {
+    console.log("the id is: " + id);
+    db.findOne({id: id}, function(err, user) {
       done(null, user);
     });
   };
