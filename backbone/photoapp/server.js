@@ -1,3 +1,8 @@
+var requser = {
+  username: "simon",
+  id: "1"
+}
+
 var express = require('express');
 var path = require('path');
 var bourne = require("bourne");
@@ -59,10 +64,8 @@ app.post('/create', function(req, res, next) {
   console.log(userAttrs);
   users.findOne({username: userAttrs.username}, function (err, existingUser) {
     if (!existingUser) {
-      console.log("new user");
-      users.insert(userAttrs, function(user) {
+      users.insert(userAttrs, function(err, user) {
         req.login(user, function(err) {
-          console.log("logging in: " + req.user + err);
           res.redirect("/");
         });
       });
@@ -73,13 +76,12 @@ app.post('/create', function(req, res, next) {
 });
 
 app.get('/*', function(req, res) {
-  console.log("req user is: " + req.user);
-  if(!req.user) {
+  if(!requser) {
     res.redirect('/login');
     return;
   }
   res.render("index.ejs", {
-    user: JSON.stringify(safe(req.user))
+    user: JSON.stringify(safe(requser))
   });
 });
 

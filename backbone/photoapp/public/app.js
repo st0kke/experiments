@@ -1,3 +1,15 @@
+_.templateSettings = {
+  interpolate: /\{\{(.+?)\}\}/g
+};
+
+var NavView = Backbone.View.extend({
+  template: _.template($("#navView").html()),
+  render: function() {
+    this.el.innerHTML = this.template(USER);
+    return this;
+  }
+});
+
 var AppRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.main = options.main;
@@ -11,10 +23,3 @@ var AppRouter = Backbone.Router.extend({
   }
 });
 
-var NavView = Backbone.View.extend({
-  template: _.template($("navView).html()),
-  render: function() {
-    this.el.innerHTML = this.template(USER);
-    return this;
-  }
-});
