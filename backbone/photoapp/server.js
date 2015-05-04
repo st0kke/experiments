@@ -8,7 +8,7 @@ var path = require('path');
 var bourne = require("bourne");
 var passport = require("passport");
 var signin = require("./signin");
-
+var fs = require("fs");
 var app = express();
 
 var users = new bourne("users.json");
@@ -74,6 +74,28 @@ app.post('/create', function(req, res, next) {
     }
   });
 });
+
+app.post("/photos", function(req, res) {
+  var oldPath = req.files.file.path,
+      publicPath = path.join("images", requuser.id + "_" + 
+        (photos.data.length + 1) + ".jpg"),
+      newPath = path.join(_dirname, "public", publicPath);
+
+  fs.rename(oldPath, newPath, function(err) {
+      if (!err) {
+        photos.insert({
+          userId: requser.id,
+          path: "/" + publicPath,
+          caption: req.body.caption,
+          username: requser.username
+        }, function(photo) {
+          res.send(photo);
+        });
+      } else {
+       res.send(err);
+      }
+  });
+});  
 
 app.get('/*', function(req, res) {
   if(!requser) {

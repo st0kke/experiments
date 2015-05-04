@@ -2,6 +2,41 @@ _.templateSettings = {
   interpolate: /\{\{(.+?)\}\}/g
 };
 
+var Person = Backbone.Model.extend({
+  urlRoot: "/photos",
+
+  sync: function(method, model, options) {
+    var opts = {
+      url: this.url(),
+      success: function(data) {
+        if (options.success) {
+          options.success(data);
+        }
+      }
+    };
+
+    switch(method) {
+      case "create":
+        opts.type = "POST";
+        opts.data = new FormData();
+        opts.data.append("file", model.get('file'));
+        opts.data.append("caption", model.get('caption'));
+        opts.processData = false;
+        opts.contentType = false;
+        break;
+      default:
+        opts.type = "GET";
+    }
+
+    return $.ajax(opts);
+  }
+
+});
+
+var Photos = Backbone.Collection.extend({
+  model: Photo
+});
+
 var AddPhotoView = Backbone.View.extend({
   tagName: "form",
   initialize: function(options) {
@@ -18,7 +53,7 @@ var AddPhotoView = Backbone.View.extend({
   uploadFile: function(evt) {
     evt.preventDefault();
     var photo = new Photo({
-      file: $("imageUpload")[0].files[0],
+      file: $("#imageUpload")[0].files[0],
       caption: $("#imageCaption").val()
     });
     this.photos.create(photo, {wait: true});
