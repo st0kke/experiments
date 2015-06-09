@@ -4,6 +4,7 @@ _.templateSettings = {
 
 var Photo = Backbone.Model.extend({
   urlRoot: "/photos",
+
   sync: function(method, model, options) {
     var opts = {
       url: this.url(),
@@ -33,7 +34,6 @@ var Photo = Backbone.Model.extend({
 var Photos = Backbone.Collection.extend({
   model: Photo
 });
-       
 
 var AddPhotoView = Backbone.View.extend({
   tagName: "form",
@@ -51,7 +51,7 @@ var AddPhotoView = Backbone.View.extend({
   uploadFile: function(evt) {
     evt.preventDefault();
     var photo = new Photo({
-      file: $("imageUpload")[0].files[0],
+      file: $("#imageUpload")[0].files[0],
       caption: $("#imageCaption").val()
     });
     this.photos.create(photo, {wait: true});
