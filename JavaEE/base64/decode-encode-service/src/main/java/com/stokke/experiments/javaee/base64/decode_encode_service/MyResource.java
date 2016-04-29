@@ -1,5 +1,7 @@
 package com.stokke.experiments.javaee.base64.decode_encode_service;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -26,12 +28,13 @@ public class MyResource {
         return "Got it!";
     }
     
-    @GET
+    @POST
     @Path("encode")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Convert base64Encode() {
+    public Convert base64Encode(@FormParam("input") String input) {
     	Convert c = new Convert();
-    	c.setInput("theinput");
+    	c.setInput(input);
     	c.setOutput("theoutput");
     	return c;
     }

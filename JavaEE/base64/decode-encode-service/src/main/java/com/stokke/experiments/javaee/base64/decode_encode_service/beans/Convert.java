@@ -5,6 +5,10 @@ public class Convert {
 	private String input;
 	private String output;
 	
+	@Override
+	public String toString() {
+		return "Convert [input=" + input + ", output=" + output + "]";
+	}
 	public String getInput() {
 		return input;
 	}
