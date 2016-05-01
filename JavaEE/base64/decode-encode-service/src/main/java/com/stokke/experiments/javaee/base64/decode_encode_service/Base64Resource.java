@@ -16,7 +16,7 @@ import com.stokke.experiments.javaee.base64.decode_encode_service.beans.Conversi
  * Root resource (exposed at "myresource" path)
  */
 @Path("base64")
-public class MyResource {
+public class Base64Resource {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent

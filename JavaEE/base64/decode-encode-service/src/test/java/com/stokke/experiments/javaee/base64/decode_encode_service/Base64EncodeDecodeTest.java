@@ -49,6 +49,6 @@ public class Base64EncodeDecodeTest extends JerseyTest 	{
     protected Application configure() {
         set(TestProperties.LOG_TRAFFIC, true);
         set(TestProperties.DUMP_ENTITY, true);
-        return new ResourceConfig(MyResource.class);
+        return new ResourceConfig(Base64Resource.class);
     }
 }
