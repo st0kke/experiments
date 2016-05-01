@@ -8,12 +8,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.POST;
 
-import com.stokke.experiments.javaee.base64.decode_encode_service.beans.Convert;
+import org.glassfish.jersey.internal.util.Base64;
+
+import com.stokke.experiments.javaee.base64.decode_encode_service.beans.ConversionBean;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
+@Path("base64")
 public class MyResource {
 
     /**
@@ -32,10 +34,22 @@ public class MyResource {
     @Path("encode")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Convert base64Encode(@FormParam("input") String input) {
-    	Convert c = new Convert();
+    public ConversionBean base64Encode(@FormParam("input") String input) {
+    	ConversionBean c = new ConversionBean();
     	c.setInput(input);
-    	c.setOutput("theoutput");
+    	c.setOutput(Base64.encodeAsString(input.getBytes()));
     	return c;
     }
+    
+    @POST
+    @Path("decode")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ConversionBean base64Decode(@FormParam("input") String input) {
+    	ConversionBean c = new ConversionBean();
+    	c.setInput(input);
+    	c.setOutput(Base64.decodeAsString(input));
+    	return c;
+    }
+    
 }

@@ -1,6 +1,6 @@
 package com.stokke.experiments.javaee.base64.decode_encode_service.beans;
 
-public class Convert {
+public class ConversionBean {
 	
 	private String input;
 	private String output;
