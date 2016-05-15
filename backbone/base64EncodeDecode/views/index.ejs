@@ -3,24 +3,22 @@
 	<head><title>Base64 Encode and Decode</title>
 	</head>
 	<body>
-		<div id="main"/>
-
-		<script type="text/template" id="decodeView">
-			<textarea id="toBeDecoded"></textarea><br/>
-			<textarea id="decoded"></textarea><br/>
-			<button id="decode">Decode</button>
-		</script>	
-    	<script src="/jquery.js"></script>
-        <script src="/underscore.js"></script>
-	<script src="/backbone.js"></script>
-	<script src="/app.js"></script>
+    	  <div id="main"/>
+  	  <script type="text/template" id="decodeView">
+  	    <textarea id="toBeDecoded"></textarea><br/>
+	    <textarea id="decoded"></textarea><br/>
+	    <button id="decode">Decode</button>
+	  </script>	
+    	  <script src="/jquery.js"></script>
+          <script src="/underscore.js"></script>
+	  <script src="/backbone.js"></script>
+	  <script src="/app.js"></script>
 		    
-
-	<script>
-		var decodeRouter = new DecodeRouter({
-			main: $("#main")
-		});
-		Backbone.history.start({pushState: true});
-	</script>
+	  <script>
+ 	    var decodeRouter = new DecodeRouter({
+	      main: $("#main")
+	    });
+	    Backbone.history.start({pushState: true});
+	  </script>
 	</body>
 </html>
