@@ -11,4 +11,8 @@ app.get('/*', function(req, res) {
 	res.render("index.ejs");
 });
 
+app.post("/decode", function(req, res) {
+  res.json('{"decodedString":"the decoded version eventually"}');
+});
+
 app.listen(3000);
