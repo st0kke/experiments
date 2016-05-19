@@ -4,14 +4,18 @@ _.templateSettings = {
 
 var DecodeView = Backbone.View.extend({
   initalize: function() {
+    this.model.on('change', this.render, this);
     console.log("decode view setup");
   },
+  model: DecodeModel,
   events: {
     'click button': 'decodeString'		    
   },
   template: _.template($('#decodeView').html()),
   render: function() {
+    console.log('tbd:'+ this.model.get('toBeDecoded'));
     var model = this.model.toJSON();
+    console.log('json is: ' + this.model.attributes);
     this.el.innerHTML = this.template(model);
     return this;
   },
@@ -19,15 +23,18 @@ var DecodeView = Backbone.View.extend({
     var stringToBeDecoded = $("#toBeDecoded").val();
     console.log('decode clicked: ' + stringToBeDecoded);
     this.model.set('toBeDecoded', stringToBeDecoded);
+    this.model.set('decoded', 'blah blah blah');
     this.model.save();
   }
 
 });
 
 var DecodeModel = Backbone.Model.extend({
+	defaults:{'toBeDecoded':'sample', 'decoded':'sample2'},
   url: '/decode',
   parse: function(response) {
     console.log('received response:' + response);
+    
   }
 });
 
