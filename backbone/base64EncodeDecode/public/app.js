@@ -5,37 +5,45 @@ _.templateSettings = {
 var DecodeView = Backbone.View.extend({
   initalize: function() {
     this.model.on('change', this.render, this);
-    console.log("decode view setup");
   },
-  model: DecodeModel,
   events: {
     'click button': 'decodeString'		    
   },
   template: _.template($('#decodeView').html()),
   render: function() {
-    console.log('tbd:'+ this.model.get('toBeDecoded'));
+    console.log('render called:'+ this.model.get('toBeDecoded'));
     var model = this.model.toJSON();
-    console.log('json is: ' + this.model.attributes);
+    console.log('json is: ' + this.modeli);
     this.el.innerHTML = this.template(model);
     return this;
   },
   decodeString: function(e) {
     var stringToBeDecoded = $("#toBeDecoded").val();
     console.log('decode clicked: ' + stringToBeDecoded);
-    this.model.set('toBeDecoded', stringToBeDecoded);
-    this.model.set('decoded', 'blah blah blah');
+    this.model.set({'toBeDecoded': stringToBeDecoded});
     this.model.save();
+    console.log('after save:' + this.model.get('decoded'));
   }
 
 });
 
 var DecodeModel = Backbone.Model.extend({
-	defaults:{'toBeDecoded':'sample', 'decoded':'sample2'},
+  defaults: {
+    toBeDecoded:'',
+    decoded:''
+  },
   url: '/decode',
-  parse: function(response) {
+  initialize:function(){
+    this.on('change', this.someChange, this);
+  },
+  someChange:function(model, options){
+    console.log('something changed');		     
+  }  
+	//,
+  /*parse: function(response) {
     console.log('received response:' + response);
     
-  }
+  }*/
 });
 
 var DecodeRouter = Backbone.Router.extend({
