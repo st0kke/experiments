@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<ShippingInstruction>
+<Header>
+<SenderID>ESPPARTNER</SenderID>
+<ReceiverID>MAEU</ReceiverID>
+<ApplicationType version="1.0">XML*SI</ApplicationType>
+<ControlNumber>12345</ControlNumber>
+<DocumentDateTime>2015-03-25 14:50:00</DocumentDateTime>
+</Header>
+<MessageSet>
+<SubmissionType>New</SubmissionType>
+<ServiceMode>CYCY</ServiceMode>
+<BillofLading>12345678</BillofLading>
+<BookingNumber>12345678</BookingNumber>
+<ServiceContractNumber>M12345678</ServiceContractNumber>
+<DocumentType>SEA WAYBILL</DocumentType>
+<NumberofOriginals>2</NumberofOriginals>
+<NumberofCopies>4</NumberofCopies>
+<PlaceofIssue>USSEA</PlaceofIssue>
+<Clause>This is an example</Clause>
+<Reference type="Invoice">ABCD123456</Reference>
+<Reference type="ZZZ">ABCD123456</Reference>
+<ChargePayment>
+<ChargeCategory>Basic Freight</ChargeCategory>
+<PrepaidCollectIndicator>PREPAID</PrepaidCollectIndicator>
+<Partytopayrole>Anyone</Partytopayrole>
+<Partytopayname>ABC Oil Company</Partytopayname>
+<Partytopayaddress>Anywhere 123</Partytopayaddress>
+</ChargePayment>
+<Carriage>
+<PlaceofReceiptCode>USLAX</PlaceofReceiptCode>
+<PlaceofReceiptName>Los Angeles, CA, USA</PlaceofReceiptName>
+<PlaceofReceiptCountry>USA</PlaceofReceiptCountry>
+<EstimatedDepartureDate>2015-04-01</EstimatedDepartureDate>
+<PlaceofDeliveryCode>USSD</PlaceofDeliveryCode>
+<PlaceofDeliveryName>San Diego, CA</PlaceofDeliveryName>
+<PlaceofDeliveryCountry>US</PlaceofDeliveryCountry>
+<EstimatedArrivalDate>2015-04-05</EstimatedArrivalDate>
+<Routing>
+<VesselName>Maersk EMMA</VesselName>
+<CarrierCode>MAEU</CarrierCode>
+<Voyage>012W</Voyage>
+<PortofLoadCode>CAVNC</PortofLoadCode>
+<PortofLoadName>VANCOUVER</PortofLoadName>
+<PortofLoadCountry>CA</PortofLoadCountry>
+<EstimatedDepartureDate>2015-04-10</EstimatedDepartureDate>
+<PortofDischargeCode>CAVNC</PortofDischargeCode>
+<PortofDischargeName>Vancouver</PortofDischargeName>
+<PortofDischargeCountry>CANADA</PortofDischargeCountry>
+<EstimatedArrivalDate>2014-04-20</EstimatedArrivalDate>
+</Routing>
+<Routing>
+<VesselName>BARGE</VesselName>
+<CarrierCode>MAEU</CarrierCode>
+<Voyage>013E</Voyage>
+<PortofLoadCode>CAVNC</PortofLoadCode>
+<PortofLoadName>VANCOUVER</PortofLoadName>
+<PortofLoadCountry>CA</PortofLoadCountry>
+<EstimatedDepartureDate>2015-04-10</EstimatedDepartureDate>
+<PortofDischargeCode>CAVNC</PortofDischargeCode>
+<PortofDischargeName>Vancouver</PortofDischargeName>
+<PortofDischargeCountry>CANADA</PortofDischargeCountry>
+<EstimatedArrivalDate>2014-04-20</EstimatedArrivalDate>
+</Routing>
+</Carriage>
+<Parties>
+<PartyRole>Shipper</PartyRole>
+<PartyAddress>Shipper company
+      address line 1
+      address line 2
+      telephone #999-999-9999 
+</PartyAddress>
+<PartyName>The Shipper</PartyName>
+<CustomerCode>33123</CustomerCode>
+<ContactName>Mr. Me</ContactName>
+<ContactTelephone>999-999-9999</ContactTelephone>
+<ContactFax>999-999-9999</ContactFax>
+<ContactEmail>shipper@me.com</ContactEmail>
+</Parties>
+<Parties>
+<PartyRole>CONSIGNEE</PartyRole>
+<PartyAddress>Shipper company
+      address line 1
+      address line 2
+      telephone #999-999-9999 
+</PartyAddress>
+<PartyName>I am the Consignee</PartyName>
+<CustomerCode>33123</CustomerCode>
+<ContactName>Mr. Me</ContactName>
+<ContactTelephone>999-999-9999</ContactTelephone>
+<ContactFax>999-999-9999</ContactFax>
+<ContactEmail>consignee@me.com</ContactEmail>
+</Parties>
+<Cargo>
+<CargoDescription>Stuff, packed stuff, more stuff</CargoDescription>
+<PackageType>Dry</PackageType>
+<NumberofPackages>100</NumberofPackages>
+<MarksandNumbers>123ABC</MarksandNumbers>
+<HSCode>ABC123</HSCode>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="FTQ">99.99</Volume>
+<SplitGoodsPlacement>
+<EquipmentIdentifier>AAAA1122345</EquipmentIdentifier>
+<NumberofPackages>10</NumberofPackages>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+</SplitGoodsPlacement>
+<SplitGoodsPlacement>
+<EquipmentIdentifier>AAAA1122346</EquipmentIdentifier>
+<NumberofPackages>20</NumberofPackages>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+</SplitGoodsPlacement>
+<SplitGoodsPlacement>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<NumberofPackages>70</NumberofPackages>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+</SplitGoodsPlacement>
+</Cargo>
+<Cargo>
+<CargoDescription>Stuff, packed stuff, more stuff</CargoDescription>
+<PackageType>Dry</PackageType>
+<NumberofPackages>100</NumberofPackages>
+<MarksandNumbers>123ABC</MarksandNumbers>
+<HSCode>ABC123</HSCode>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="FTQ">99.99</Volume>
+<SplitGoodsPlacement>
+<EquipmentIdentifier>AAAA1122345</EquipmentIdentifier>
+<NumberofPackages>10</NumberofPackages>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+</SplitGoodsPlacement>
+<DangerousCargo>
+<IMOClass>IMD</IMOClass>
+<UNDGNumber>1234</UNDGNumber>
+<TechnicalName>Explosive</TechnicalName>
+<ProperShippingName>Proper Shipping Name</ProperShippingName>
+<FlashPoint unit="CEL">-10.0</FlashPoint>
+<BoilingPoint unit="FAH">98.7</BoilingPoint>
+<PackageGroup>1</PackageGroup>
+<MarinePollutant>N</MarinePollutant>
+<NetWeight unit="LBS">4444.50</NetWeight>
+<IMOLabel>anySimpletyp</IMOLabel>
+<EMSNumber>anySimpletyp</EMSNumber>
+<MFAGNumber>anySimpletyp</MFAGNumber>
+<OnDeckStowage>anySimpletyp</OnDeckStowage>
+<PoisonousInhalationHazard>anySimpletyp</PoisonousInhalationHazard>
+<ContactName>Mr. Dangerous</ContactName>
+<ContactTelephone>999-999-9999</ContactTelephone>
+<ContactEmail>mrdang@shipper.com</ContactEmail>
+<AdditionalDangerousGoodsInfo>yes more</AdditionalDangerousGoodsInfo>
+</DangerousCargo>
+</Cargo>
+<Container>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<ShipperOwned>Y</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CARRIER">STR123</SealNumber>
+<Reefer>
+<Temperature unit="CEL">09</Temperature>
+<Humidity>String</Humidity>
+<Ventilation>String</Ventilation>
+<NumberofProbes>12</NumberofProbes>
+<AirflowConrolRequested>Y</AirflowConrolRequested>
+<DrainholeOpen>Y</DrainholeOpen>
+</Reefer>
+<OutofGaugeCargo>
+<OOGFront unit="CMT">544</OOGFront>
+<OOGBack unit="CMT">44</OOGBack>
+<OOGRight unit="CMT">14</OOGRight>
+<OOGLeft unit="CMT">14</OOGLeft>
+<OOGHeight unit="CMT">75</OOGHeight>
+</OutofGaugeCargo>
+</Container>
+<Container>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<ShipperOwned>N</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CARRIER">STR123</SealNumber>
+</Container>
+<Container>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<ShipperOwned>Yes</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CARRIER">STR123</SealNumber>
+<SealNumber type="SHIPPER">STR123</SealNumber>
+<Reefer>
+<Temperature unit="CEL">09</Temperature>
+<Humidity>String</Humidity>
+<Ventilation>String</Ventilation>
+<NumberofProbes>12</NumberofProbes>
+<AirflowConrolRequested>Y</AirflowConrolRequested>
+<DrainholeOpen>Y</DrainholeOpen>
+</Reefer>
+</Container>
+<Container>
+<EquipmentIdentifier>ABD1</EquipmentIdentifier>
+<ShipperOwned>Y</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CUSTOMS">STR123</SealNumber>
+<Reefer>
+<Temperature unit="CEL">09</Temperature>
+<Humidity>String</Humidity>
+<Ventilation>String</Ventilation>
+<NumberofProbes>12</NumberofProbes>
+<AirflowConrolRequested>Y</AirflowConrolRequested>
+<DrainholeOpen>Y</DrainholeOpen>
+</Reefer>
+</Container>
+<Container>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<ShipperOwned>Yes</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CARRIER">STR123</SealNumber>
+</Container>
+<Container>
+<EquipmentIdentifier>AAAA1122347</EquipmentIdentifier>
+<ShipperOwned>Yes</ShipperOwned>
+<ContainerType>45G0</ContainerType>
+<Weight unit="KGS">99.99</Weight>
+<Volume unit="MTQ">99.99</Volume>
+<SealNumber type="CARRIER">STR123</SealNumber>
+</Container>
+</MessageSet>
+</ShippingInstruction>

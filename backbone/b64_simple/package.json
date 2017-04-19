@@ -1,0 +1,14 @@
+{
+	"name": "base64simple",
+	"description": "Simple base64 backbone app",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"dependencies": {
+		"express": "^4.11.0"
+	},
+	"devDependencies" : {
+		"nodemon" : "latest"
+	}
+}

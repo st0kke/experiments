@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<si:shipping-instruction xmlns:si="http://www.st0kke.experiements.org/ShippingInstruction" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.st0kke.experiements.org/ShippingInstruction.xsd">
+    <si-data>
+        <shipment-number></shipment-number>
+        <bill-number></bill-number>
+        <pickup-country></pickup-country>
+    </si-data>
+    <si-meta-data>
+    	<filename></filename>
+    	<image-type></image-type>
+    </si-meta-data>
+    <si-image></si-image>
+</si:shipping-instruction>

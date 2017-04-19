@@ -1,0 +1,79 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Base64 Converter</title>
+		<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+	</head>
+	<body>
+		<div id="content" />
+	</body>
+
+	<script type="text/template" id="decodeView">
+		<label><%= convert_label %></label><br/>
+		Text to be converted: <input type="text" name="input" id="input" value="<%=input%>"><br/>
+		Result of conversion: <input type="text" name="output" id="output" value="<%=output%>" ></input><br/>
+		<button id="convert">Submit</button>
+	</script>
+
+	<script>
+
+		var DecodeModel = Backbone.Model.extend({
+			defaults: {
+				convert_label: 'Decode',
+				input: '',
+				output: 'sample'
+			},
+			initialize: function() {
+				console.log('new model created');
+			}
+		
+		});
+
+		var DecodeView = Backbone.View.extend({
+			initialize: function() {
+				console.log('initialised view');
+				this.render();
+				this.model.on('change', this.render, this);
+			},
+			template: _.template($('#decodeView').html()),
+			render: function() {
+				console.log('render called');
+				console.log(this.model);
+				this.$el.html(this.template(this.model.attributes));
+			},
+			events: {
+				"click button" : "doConvert"
+			},
+			aChange: function() {
+				this.render();
+				console.log('model change detected');
+			},
+			doConvert: function(e) {
+				console.log('convert clicked');
+				var toBeDecoded = $('#input');
+				var decoded = 'abcded';
+				//$('#output').val(decoded);
+				this.model.set('input', toBeDecoded.val());
+				this.model.set('output', decoded);
+				console.log(this.model);
+			}
+
+		});
+
+		var Collection = Backbone.Collection.extend({
+			initialize: function() {
+				console.log('collection inited');
+			},
+
+
+		});
+
+		var decodeModel = new DecodeModel();
+		var decode = new DecodeView({model: decodeModel, el: $('#content')});
+			
+	</script>
+
+</html>
+

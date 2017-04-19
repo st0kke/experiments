@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.maersk.com/csed/2015/05/csedwrapper" xmlns="http://www.maersk.com/csed/2015/05/csedwrapper"
+	elementFormDefault="qualified">
+
+	<xs:element name="CSEDwrapper">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="idx" type="Unstructured" />
+				<xs:element name="edi" type="Structured" />
+				<xs:element name="esi" type="Structured" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Unstructured">
+		<xs:sequence>
+			<xs:element name="eml" type="Payload" />
+			<xs:element name="metadata" type="Metadata" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Structured">
+		<xs:sequence>
+			<xs:element name="sixml" type="Payload" />
+			<xs:element name="telex" type="Payload" />
+			<xs:element name="metadata" type="Metadata" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="Payload">
+		<xs:restriction base="xs:base64Binary">
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Metadata">
+		<xs:sequence>
+			<xs:element name="shippingNumber" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="bookingRefNumber" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="billNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="receivedDate" type="xs:date" minOccurs="0" />
+			<xs:element name="imageType" type="xs:string" minOccurs="0" />
+			<xs:element name="messageId" type="xs:string" minOccurs="0" />
+			<xs:element name="fileType" type="xs:string" minOccurs="0" />
+			<xs:element name="gscName" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

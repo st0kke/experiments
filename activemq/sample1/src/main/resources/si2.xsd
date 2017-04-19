@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="si-data" type="si-dataType"/>
+  <xs:element name="si-meta-data" type="si-meta-dataType"/>
+  <xs:element name="si-image" type="xs:string"/>
+  <xs:complexType name="si-dataType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="shipment-number"/>
+      <xs:element type="xs:string" name="bill-number"/>
+      <xs:element type="xs:string" name="pickup-country"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="si-meta-dataType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="filename"/>
+      <xs:element type="xs:string" name="image-type"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

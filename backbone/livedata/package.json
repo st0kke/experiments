@@ -1,0 +1,18 @@
+{
+  "name": "simple-blog",
+  "description": "This is a very simple blog",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "3.x.x",
+    "ejs": "~0.8.4",
+    "bourne": "0.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jst": "^1.0.0",
+    "nodemon": "latest"
+  }
+}
