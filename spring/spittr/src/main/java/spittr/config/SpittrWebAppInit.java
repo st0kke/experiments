@@ -18,4 +18,6 @@ public class SpittrWebAppInit extends AbstractAnnotationConfigDispatcherServletI
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
+
 }
