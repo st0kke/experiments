@@ -4,7 +4,6 @@ import org.springframework.web.servlet.view.InternalResourceView;
 import spittr.Spittle;
 import spittr.web.SpittleController;
 import spittr.data.SpittleRepository;
-import spittr.web.HomeController;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,6 +64,26 @@ public class SpittleControllerTest {
         }
 
         return spittles;
+
+    }
+
+    @Test
+    public void testFindOne() throws Exception {
+        Spittle expectedSpittle = new Spittle("Sample", new Date());
+        SpittleRepository mockRepository = mock(SpittleRepository.class);
+        when(mockRepository.findOne(12345L)).thenReturn(expectedSpittle);
+
+        SpittleController controller = new SpittleController(mockRepository);
+
+        MockMvc mockMvc = standaloneSetup(controller)
+                .setSingleView(new InternalResourceView("/WEB-INF/views/spittle.jsp"))
+                .build();
+
+        mockMvc.perform(get("/spittles/12345"))
+                .andExpect(view().name("spittle"))
+                .andExpect(model().attributeExists("spittle"))
+                .andExpect(model().attribute("spittle", expectedSpittle));
+
 
     }
 

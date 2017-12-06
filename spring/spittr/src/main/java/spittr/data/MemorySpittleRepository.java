@@ -6,7 +6,7 @@ import spittr.Spittle;
 import java.util.*;
 
 @Repository
-public class MemoryRepository implements SpittleRepository {
+public class MemorySpittleRepository implements SpittleRepository {
 
     private static List<Spittle> spittleList = new ArrayList<>();
 
@@ -19,4 +19,13 @@ public class MemoryRepository implements SpittleRepository {
     public List<Spittle> findSpittles(long max, int count) {
         return Collections.unmodifiableList(spittleList);
     }
+
+    @Override
+    public Spittle findOne(long id) {
+        Optional<Spittle> match = spittleList.stream().filter((spittle) -> spittle.getId() == id ).findFirst();
+
+        return match.get();
+    }
+
+
 }
