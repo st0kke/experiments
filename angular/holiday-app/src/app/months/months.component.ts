@@ -7,16 +7,19 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class MonthsComponent implements OnInit {
 
-  @Input() year;
-  @Output() yearEvent = new EventEmitter();
+  @Input() selectedMonth;
+  @Input() month;
+  @Input() holidayString;
+  @Input() dayString;
+  @Output() monthClicked = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  yearClicked() {
-    this.yearEvent.emit();
+  monthClick() {
+    this.monthClicked.emit();
   }
 
 }

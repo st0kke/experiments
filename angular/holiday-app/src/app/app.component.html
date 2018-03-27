@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
 
   <!--
@@ -9,13 +9,15 @@
   <button (click)="addyear()">Add New Year</button>
   <br/>
   -->
-  <form (ngSubmit)="newItem(myForm)" #myForm="ngForm">
-    <input name="newYear" type="text" ngModel required/>
-    <button type="submit" [disabled]="!myForm.valid">Add New Year</button>
+  <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+    <input name="inputYear" type="text" ngModel required/>
+    <button type="submit" [disabled]="!myForm.valid">Calculate</button>
   </form>
 
-  <app-months *ngFor="let year of years"
-  (yearEvent)="removeYear(year)"
-  [year]="year"></app-months>
+  <app-months *ngFor="let month of months"
+  (monthClicked)="removeYear(month)"
+  [month]="month.month"
+  [holidayString]="month.holidays"
+  [dayString]="month.days"></app-months>
 </div>
 
