@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
+import { Month } from './models';
+import { of } from 'rxjs/observable/of';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class HolidayService {
 
-  months: Object[] = [] ;
+  months: Month[] = [] ;
 
   constructor() { }
 
-  calculateHolidays(year) {
+  calculateHolidays(year): Observable<Month[]> {
 
     this.months.push({
-      month: 'January',
+      name: 'January',
       days: 'WHHHHHHHHWHHHHHHHWHHHHHHHHW',
       holidays: '01 02 03 04 11 12 13 14 21 22'
     });
     this.months.push({
-      month: 'February',
+      name: 'February',
       days: 'WHHHHHHHHWHHHHHHHWHHHHHHHHW',
       holidays: '01 02 03 04 11 12 13 14 21 22'
     });
     this.months.push({
-      month: 'March',
+      name: 'March',
       days: 'WHHHHHHHHWHHHHHHHWHHHHHHHHW',
       holidays: '01 02 03 04 11 12 13 14 21 22'
     });
 
-    return this.months;
+    return of(this.months);
   }
 
 }

@@ -1,23 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
+<h1>{{title}}</h1>
 
-  <!--
-  <input name="newYear" type="text" [(ngModel)]="newYear"/>
-  <button (click)="addyear()">Add New Year</button>
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+  <input name="inputYear" type="text" ngModel required />
+  <button type="submit" [disabled]="!myForm.valid">Calculate</button>
   <br/>
-  -->
-  <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
-    <input name="inputYear" type="text" ngModel required/>
-    <button type="submit" [disabled]="!myForm.valid">Calculate</button>
-  </form>
+</form>
+
 
   <app-months *ngFor="let month of months"
   (monthClicked)="removeYear(month)"
-  [month]="month.month"
+  [month]="month.name"
   [holidayString]="month.holidays"
   [dayString]="month.days"></app-months>
-</div>
 
+
+  <!--
+  <div>
+      <mat-toolbar color="primary">
+        <span><mat-icon>mood</mat-icon></span>
+
+        <span>Yay, Material in Angular 2!</span>
+
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-menu x-position="before" #menu="matMenu">
+        <button mat-menu-item>Option 1</button>
+        <button mat-menu-item>Option 2</button>
+      </mat-menu>
+
+      <mat-card>
+        <button mat-button>All</button>
+        <button mat-raised-button>Of</button>
+        <button mat-raised-button color="primary">The</button>
+        <button mat-raised-button color="accent">Buttons</button>
+      </mat-card>
+
+      <span class="done">
+        <button mat-fab>
+          <mat-icon>check circle</mat-icon>
+        </button>
+      </span>
+    </div>
+
+  <mat-card>
+    <mat-card-header>
+        <mat-card-title>
+          {{title}}
+          </mat-card-title>
+          <mat-card-subtitle>
+              Enter Configuration Details
+          </mat-card-subtitle>
+    </mat-card-header>
+    <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+      <mat-card-content>
+        <mat-input-container class="full-width">
+            <input name="inputYear" type="text" ngModel required/>
+        </mat-input-container>
+     </mat-card-content>
+     <mat-card-actions>
+      <button type="submit" [disabled]="!myForm.valid">Calculate</button>
+    </mat-card-actions>
+    </form>
+  </mat-card>
+-->

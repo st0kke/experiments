@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HolidayService } from './holiday.service';
+import { Month } from './models';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   title = 'Holiday String Calculator';
   years = [];
   inputYear;
-  months = [];
+  months: Month[];
 
   constructor(private holidayService: HolidayService) {}
 
@@ -24,7 +25,7 @@ export class AppComponent {
       const yearEntered = form.value.inputYear;
       if (!this.years.find(e => e === yearEntered)) {
         this.years.push(yearEntered);
-        this.months = this.holidayService.calculateHolidays(yearEntered);
+        this.holidayService.calculateHolidays(yearEntered).subscribe(months => this.months = months);
 
         console.log('Months', this.months);
       }
