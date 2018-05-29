@@ -6,14 +6,22 @@
   <br/>
 </form>
 
-
+<h2>Data</h2>
   <app-months *ngFor="let month of months"
   (monthClicked)="removeYear(month)"
   [month]="month.name"
   [holidayString]="month.holidays"
   [dayString]="month.days"></app-months>
 
+<h2>SQL Strings</h2>
+  <app-sql *ngFor="let month of months"
+    [year]="inputYear"
+    [month]="month.name"
+    [holidayString]="month.holidays"
+    [dayString]="month.days"
+  >
 
+  </app-sql>
   <!--
   <div>
       <mat-toolbar color="primary">

@@ -22,10 +22,10 @@ export class AppComponent {
 
   submitForm(form: NgForm) {
     if (form.valid) {
-      const yearEntered = form.value.inputYear;
-      if (!this.years.find(e => e === yearEntered)) {
-        this.years.push(yearEntered);
-        this.holidayService.calculateHolidays(yearEntered).subscribe(months => this.months = months);
+      this.inputYear = form.value.inputYear;
+      if (!this.years.find(e => e === this.inputYear)) {
+        this.years.push(this.inputYear);
+        this.holidayService.calculateHolidays(this.inputYear).subscribe(months => this.months = months);
 
         console.log('Months', this.months);
       }

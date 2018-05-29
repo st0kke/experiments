@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SqlgeneratorService } from '../sqlgenerator.service';
 
 @Component({
   selector: 'app-sql',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SqlComponent implements OnInit {
 
-  constructor() { }
+  @Input() year: String;
+  @Input() month: String;
+  @Input() holidayString: String;
+  @Input() dayString: String;
+
+  holidaySql: String[];
+  daySql: String[];
+
+  constructor(private sqlService: SqlgeneratorService) { }
 
   ngOnInit() {
+    this.sqlService.getHolidaySQL(this.year, this.holidayString).subscribe(results => this.holidaySql = results);
+    this.sqlService.getHolidaySQL(this.year, this.dayString).subscribe(results => this.daySql = results);
   }
 
 }
