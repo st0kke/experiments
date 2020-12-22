@@ -1,9 +1,11 @@
-def pig_latin(input_word):
-    if input_word[0] in ('a', 'e', 'i', 'o', 'u'):
-        translation = input_word + 'way'
+def pig_latin(word):
+    if word[0].lower() in 'aeiou':
+        translation = f'{word}way'
     else:
-        translation = input_word[1:] + input_word[0] + 'ay'
-    
+        translation = word[1:] + word[0] + 'ay'
+        if word[0].isupper():
+            translation = translation.capitalize()
+            
     return translation
 
 
